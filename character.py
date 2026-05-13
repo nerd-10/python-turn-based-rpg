@@ -1,4 +1,3 @@
-from action import AttackAction
 
 class Character:
     def __init__(self, name: str, health: int, stamina: int, actions: list):
@@ -9,10 +8,24 @@ class Character:
         self.stamina_max = stamina
         self.actions = list(actions) if actions else [] # List of actions objects (e.g., AttackAction)
 
+    
+    def take_damage(self, amount):
+        self.health -= amount
+        self.health = max(self.health, 0)
+
+    def use_stamina(self, amount):
+        self.stamina -= amount
+        self.stamina = max(self.stamina, 0)
+
+    def heal(self, amount):
+        self.health += amount
+        self.health = min(self.health, self.health_max)
+
+    def is_alive(self):
+        return self.health > 0
+
+
     def get_action(self, index):
         if 0 <= index < len(self.actions):
             return self.actions[index]
         return None
-
-hero = Character("Hero", 100, 50, [AttackAction("Slash", 10, 5)])
-enemy = Character("Enemy", 80, 40, [AttackAction("Bite", 6, 4)])
