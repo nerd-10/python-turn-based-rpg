@@ -9,6 +9,9 @@ class Action:
     
     def execute(self, actor, target):
         raise NotImplementedError("Execute method must be implemented by subclasses")
+    def get_details(self):
+        return (f"(Cost: {self.stamina_cost} ST)")
+    
 
 #class to execute an attack action, which reduces the target's health and consumes the actor's stamina
 class AttackAction(Action):
@@ -25,6 +28,9 @@ class AttackAction(Action):
 
         return f"{actor.name} attacks {target.name} for {self.damage} damage!"
     
+    def get_details(self):
+        return (f"(Damage: {self.damage}, Cost: {self.stamina_cost} ST)")
+    
 #class to execute a jheal action, which restores the actor's health and consumes stamina
 class HealAction(Action):
     def __init__(self, name: str, heal_amount: int, stamina_cost: int):
@@ -39,3 +45,9 @@ class HealAction(Action):
         actor.use_stamina(self.stamina_cost)
 
         return f"{actor.name} heals for {self.heal_amount} health!"
+    
+    def get_details(self):
+        return (f"(Heal: {self.heal_amount}, Cost: {self.stamina_cost} ST)")
+    
+
+#class to execute a defend action, which reduces incoming damage for the next turn and consumes stamina

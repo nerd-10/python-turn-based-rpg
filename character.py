@@ -6,7 +6,7 @@ class Character:
         self.health_max = health
         self.stamina = stamina
         self.stamina_max = stamina
-        self.actions = list(actions) if actions else [] # List of actions objects (e.g., AttackAction)
+        self.actions = list(actions) if actions else [] # List of actions objects (e.g., AttackAction, HealAction)
 
     
     def take_damage(self, amount):

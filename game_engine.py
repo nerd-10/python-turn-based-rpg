@@ -13,8 +13,7 @@ class GameEngine:
             # --- PLAYER TURN ---
             print(f"\n{self.hero.name}'s turn:")
             for i, action in enumerate(self.hero.actions):
-                print(f"{i}: {action.name} (Damage: {action.damage}, Cost: {action.stamina_cost})")
-
+                print(f"{i}: {action.name} ({action.get_details()})")
             try:
                 choice = int(input("Choose an action: "))
             except ValueError:
