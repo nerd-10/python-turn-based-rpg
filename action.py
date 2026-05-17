@@ -51,3 +51,18 @@ class HealAction(Action):
     
 
 #class to execute a defend action, which reduces incoming damage for the next turn and consumes stamina
+class DefendAction(Action):
+    def __init__(self, name: str, stamina_cost: int):
+        super().__init__(name, stamina_cost)
+
+    def execute(self, actor, target=None):
+        if not self.can_execute(actor):
+            return f"{actor.name} tried to defend but has no stamina!"
+        
+        actor.defend()
+        actor.use_stamina(self.stamina_cost)
+
+        return f"{actor.name} raises their shield to defend!"
+    
+    def get_details(self):
+        return (f"(Cost: {self.stamina_cost} ST)")
