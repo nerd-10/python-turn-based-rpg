@@ -8,10 +8,15 @@ class Character:
         self.stamina_max = stamina
         self.actions = list(actions) if actions else [] # List of actions objects (e.g., AttackAction, HealAction)
 
+        self.is_defending = False
     
     def take_damage(self, amount):
+        if self.is_defending:
+            amount = amount // 2
+            self.is_defending = False
         self.health -= amount
         self.health = max(self.health, 0)
+        
 
     def use_stamina(self, amount):
         self.stamina -= amount

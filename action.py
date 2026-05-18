@@ -59,7 +59,7 @@ class DefendAction(Action):
         if not self.can_execute(actor):
             return f"{actor.name} tried to defend but has no stamina!"
         
-        actor.defend()
+        actor.is_defending = True
         actor.use_stamina(self.stamina_cost)
 
         return f"{actor.name} raises their shield to defend!"
