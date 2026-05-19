@@ -25,6 +25,10 @@ class Character:
     def heal(self, amount):
         self.health += amount
         self.health = min(self.health, self.health_max)
+    
+    def recover_stamina(self, amount):
+        self.stamina += amount
+        self.stamina = min(self.stamina, self.stamina_max)
 
     def is_alive(self):
         return self.health > 0

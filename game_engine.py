@@ -1,6 +1,4 @@
 from character import Character
-from action import AttackAction
-from action import HealAction
 import random
 
 class GameEngine:

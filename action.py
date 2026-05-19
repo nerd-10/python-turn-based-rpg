@@ -9,6 +9,7 @@ class Action:
     
     def execute(self, actor, target):
         raise NotImplementedError("Execute method must be implemented by subclasses")
+    
     def get_details(self):
         return (f"(Cost: {self.stamina_cost} ST)")
     
@@ -66,3 +67,16 @@ class DefendAction(Action):
     
     def get_details(self):
         return (f"(Cost: {self.stamina_cost} ST)")
+
+#clas to execute stamina recovery action, which restores the actor's stamina
+class StaminaRecoveryAction(Action):
+    def __init__(self, name: str, recovery_amount: int):
+        super().__init__(name, stamina_cost=0)  # No stamina cost for recovery
+        self.recovery_amount = recovery_amount
+    
+    def execute(self, actor, target=None):
+        actor.recover_stamina(self.recovery_amount)
+        return f"{actor.name} recovers {self.recovery_amount} stamina!"
+    
+    def get_details(self):
+        return (f"(Recover: {self.recovery_amount} ST)")
