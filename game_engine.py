@@ -14,6 +14,7 @@ class GameEngine:
             print(f"\n{self.hero.name}'s turn:")
             for i, action in enumerate(self.hero.actions):
                 print(f"{i}: {action.name} ({action.get_details()})")
+            print("R: Run away")
             try:
                 choice = (input("Choose an action: "))
             except ValueError:
@@ -59,7 +60,10 @@ class GameEngine:
     def run(self):
         self.display_status()  
         while True:
-                self.player_turn()
+                p_move = self.player_turn()
+                if not p_move:
+                    print("You chose to run away to main menu")
+                    break
                 if self.enemy.health <= 0:
                     print(f"{self.enemy.name} has been defeated! You win!")
                     break
