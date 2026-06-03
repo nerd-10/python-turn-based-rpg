@@ -37,7 +37,10 @@ This project was created primarily as a learning project to practice Python, OOP
 - Return to menu by running away from battle
 
 ## Project Structure
-'''text
+
+## Project Structure
+
+```text
 main.py
 │
 ├── Menu Flow
@@ -64,7 +67,7 @@ action.py
 ├── Heal Action
 ├── Defend Action
 └── Stamina Recovery Action
-'''
+```
 
 ## Programming Concepts Practiced
 ### Python
