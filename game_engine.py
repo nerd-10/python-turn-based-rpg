@@ -1,7 +1,6 @@
 from character import Character
 import random
 
-#next enemy turn choice filtering for example if health is full or stamina is full then no healing actions or stamina recovery etc.
 #pyageme then godot engine for graphics and animations for release, but for now just a text-based game to test the mechanics and balance of the game.
 
 class GameEngine:
@@ -42,7 +41,14 @@ class GameEngine:
             return True
         
     def enemy_turn(self):
-        enemy_action = random.choice(self.enemy.actions) if self.enemy.actions else None
+        valid_actions = []
+        for action in self.enemy.actions:
+            if action.name == "Heal" and self.enemy.health == self.enemy.health_max:
+                continue
+            if action.name == "Rest" and self.enemy.stamina == self.enemy.stamina_max:
+                continue
+            valid_actions.append(action)
+        enemy_action = random.choice(valid_actions) if valid_actions else None
 
         if enemy_action is None:
             print("Enemy has no valid action!")
